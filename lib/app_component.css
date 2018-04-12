@@ -1,0 +1,25 @@
+:host {
+    background-color: #C8E6C9;
+    display: flex;
+    flex-direction: column;
+    min-width: 800px;
+    padding: 16px;
+}
+
+.app-title {
+    color: #1B5E20;
+    font-size: 36px;
+    justify-content: center;
+    padding-bottom: 32px;
+    padding-top: 16px;
+    text-align: center;
+}
+
+.plugin {
+    padding: 0 16px;
+}
+
+.submit-button {
+    background-color: #A5D6A7;
+    margin: 12px 20px 0 auto;
+}

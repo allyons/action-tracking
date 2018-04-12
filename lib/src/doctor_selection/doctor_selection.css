@@ -1,0 +1,8 @@
+.doctor-radio-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.doctor-radio {
+    margin: 0 0 8px 8px;
+}

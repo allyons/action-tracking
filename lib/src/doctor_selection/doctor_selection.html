@@ -1,0 +1,16 @@
+<material-expansionpanel
+        flat
+        name="Doctor selection"
+        secondaryText="Please indicate your preferred physician."
+        showSaveCancel=false>
+    <material-radio-group
+        class="doctor-radio-group"
+        [(ngModel)]="selectedDoctor">
+        <material-radio
+            *ngFor="let doctor of doctorList"
+            class="doctor-radio">
+            {{doctor}}
+        </material-radio>
+    </material-radio-group>
+</material-expansionpanel>
+

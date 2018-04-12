@@ -1,0 +1,31 @@
+<material-expansionpanel
+        flat
+        name="Current treatments"
+        secondaryText="Please list each of your pet's currently ongoing medical treatments."
+        showSaveCancel=false>
+  <div>
+    <material-input
+          class="treatment-input"
+          label="Add a treatment"
+          autoFocus
+          floatingLabel
+          [(ngModel)]="newTreatment"
+          (keyup.enter)="addNewTreatment()">
+    </material-input>
+    <material-button
+            class="add-button"
+            (trigger)="addNewTreatment()"
+            [disabled]="newTreatment.isEmpty">
+      <glyph class="glyph" icon="add"></glyph>
+    </material-button>
+  </div>
+  <div *ngFor="let treatment of items; let i=index">
+    <div class="saved-treatment">
+      <material-fab mini (trigger)="remove(i)">
+        <glyph class="delete-glyph" icon="delete"></glyph>
+      </material-fab>
+      <span class="saved-treatment-text">{{treatment}}</span>
+    </div>
+  </div>
+</material-expansionpanel>
+

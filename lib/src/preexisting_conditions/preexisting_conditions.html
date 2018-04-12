@@ -1,0 +1,30 @@
+<material-expansionpanel
+        flat
+        name="Preexisting conditions"
+        secondaryText="Please identify your pet's preexisting conditions."
+        showSaveCancel=false>
+    <div class="column">
+        <material-checkbox
+            *ngFor="let condition of conditions.keys"
+            class="condition-checkbox"
+            label={{condition}}
+            (checkedChange)="handleCheckedChange($event, condition)">
+        </material-checkbox>
+        <div class="other">
+            <material-checkbox
+                    class="condition-checkbox other-checkbox"
+                    label="Other"
+                    [(ngModel)]=otherChecked>
+            </material-checkbox>
+            <material-input
+                    class="other-input"
+                    label="List here"
+                    autoFocus
+                    floatingLabel
+                    [disabled]=!otherChecked
+                    [(ngModel)]="otherCondition">
+            </material-input>
+        </div>
+    </div>
+</material-expansionpanel>
+

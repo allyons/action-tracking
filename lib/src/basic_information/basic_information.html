@@ -1,0 +1,52 @@
+<material-expansionpanel
+        flat
+        name="Basic information"
+        secondaryText="Information about you and your pet"
+        showSaveCancel=false>
+    <div class="row">
+        <material-input
+                autoFocus
+                floatingLabel
+                class="client-last-name basic-info-input"
+                label="Last name"
+                [(ngModel)]="clientLastName">
+        </material-input>
+        <material-input
+                autoFocus
+                floatingLabel
+                class="client-first-name basic-info-input"
+                label="First name"
+                [(ngModel)]="clientFirstName">
+        </material-input>
+        <material-input
+                autoFocus
+                floatingLabel
+                class="pet-name basic-info-input"
+                label="Pet's name"
+                [(ngModel)]="petName">
+        </material-input>
+        <material-input
+                autoFocus
+                floatingLabel
+                class="pet-breed basic-info-input"
+                label="Pet's breed"
+                [(ngModel)]="petBreed">
+        </material-input>
+    </div>
+    <div class="row">
+        <material-input
+                autoFocus
+                floatingLabel
+                class="email-address basic-info-input"
+                label="Email address"
+                [(ngModel)]="emailAddress">
+        </material-input>
+        <material-input
+                autoFocus
+                floatingLabel
+                class="phone-number basic-info-input"
+                label="Phone number"
+                [(ngModel)]="phoneNumber">
+        </material-input>
+    </div>
+</material-expansionpanel>

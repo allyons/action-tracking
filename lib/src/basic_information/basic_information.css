@@ -1,0 +1,15 @@
+.row {
+    flex-direction: row;
+}
+
+.basic-info-input {
+    padding: 8px;
+}
+
+.client-first-name, .client-last-name, .pet-name, .pet-breed, .phone-number {
+    width: 160px;
+}
+
+.email-address {
+    width: 240px;
+}

@@ -1,0 +1,28 @@
+material-fab {
+  float: left;
+  vertical-align: middle;
+}
+
+.treatment-input {
+  width: 640px;
+}
+
+.add-button {
+  color: #2E7D32;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.saved-treatment {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+}
+
+.saved-treatment-text {
+  padding-top: 8px;
+}
+
+.delete-glyph {
+  color: #2E7D32;
+}
