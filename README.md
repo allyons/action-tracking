@@ -1,7 +1,5 @@
-# untitled
+# Action Tracking (Columbia University SEAS)
 
-A web app that uses [AngularDart](https://webdev.dartlang.org/angular) and
-[AngularDart Components](https://webdev.dartlang.org/components).
+Tracking tools for user actions in [AngularDart](https://webdev.dartlang.org/angular) web apps.
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+This library also includes an example app using [AngularDart Components](https://webdev.dartlang.org/components).

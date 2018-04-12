@@ -1,5 +1,5 @@
 name: action_tracking
-description: A web app that uses AngularDart Components
+description: Tracking tools for user actions in AngularDart web apps.
 version: 0.0.1
 #author: alexanderlyons <aml2297@columbia.edu>
 
@@ -25,8 +25,6 @@ transformers:
     $include: test/**_test.dart
 - dart_to_js_script_rewriter
 
-# Uncomment the following in sdk 1.24+ to make pub serve
-# use dartdevc (webdev.dartlang.org/tools/dartdevc).
-#web:
-#  compiler:
-#    debug: dartdevc
+web:
+  compiler:
+    debug: dartdevc
