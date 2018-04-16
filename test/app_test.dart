@@ -7,7 +7,7 @@ import 'package:angular_test/angular_test.dart';
 import 'package:pageloader/objects.dart';
 import 'package:test/test.dart';
 
-import 'package:user_action_tracking_demo/app_component.dart';
+import 'package:action_tracking/app_component.dart';
 
 NgTestFixture<AppComponent> fixture;
 AppPO appPO;

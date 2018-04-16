@@ -2,35 +2,40 @@
         flat
         name="Basic information"
         secondaryText="Information about you and your pet"
-        showSaveCancel=false>
+        (expandedChange)="handleExpandedChange($event)"
+        [showSaveCancel]="false">
     <div class="row">
         <material-input
                 autoFocus
                 floatingLabel
                 class="client-last-name basic-info-input"
                 label="Last name"
-                [(ngModel)]="clientLastName">
+                [(ngModel)]="clientLastName"
+                (inputKeyPress)="lastNameTextChange($event)">
         </material-input>
         <material-input
                 autoFocus
                 floatingLabel
                 class="client-first-name basic-info-input"
                 label="First name"
-                [(ngModel)]="clientFirstName">
+                [(ngModel)]="clientFirstName"
+                (inputKeyPress)="firstNameTextChange($event)">
         </material-input>
         <material-input
                 autoFocus
                 floatingLabel
                 class="pet-name basic-info-input"
                 label="Pet's name"
-                [(ngModel)]="petName">
+                [(ngModel)]="petName"
+                (inputKeyPress)="petNameTextChange($event)">
         </material-input>
         <material-input
                 autoFocus
                 floatingLabel
                 class="pet-breed basic-info-input"
                 label="Pet's breed"
-                [(ngModel)]="petBreed">
+                [(ngModel)]="petBreed"
+                (inputKeyPress)="petBreedTextChange($event)">
         </material-input>
     </div>
     <div class="row">
@@ -39,14 +44,16 @@
                 floatingLabel
                 class="email-address basic-info-input"
                 label="Email address"
-                [(ngModel)]="emailAddress">
+                [(ngModel)]="emailAddress"
+                (inputKeyPress)="emailAddressTextChange($event)">
         </material-input>
         <material-input
                 autoFocus
                 floatingLabel
                 class="phone-number basic-info-input"
                 label="Phone number"
-                [(ngModel)]="phoneNumber">
+                [(ngModel)]="phoneNumber"
+                (inputKeyPress)="phoneNumberTextChange($event)">
         </material-input>
     </div>
 </material-expansionpanel>

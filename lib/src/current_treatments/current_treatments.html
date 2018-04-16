@@ -2,7 +2,8 @@
         flat
         name="Current treatments"
         secondaryText="Please list each of your pet's currently ongoing medical treatments."
-        showSaveCancel=false>
+        [showSaveCancel]="false"
+        (expandedChange)="handleExpandedChange($event)">
   <div>
     <material-input
           class="treatment-input"
@@ -10,6 +11,7 @@
           autoFocus
           floatingLabel
           [(ngModel)]="newTreatment"
+          (inputKeyPress)="treatmentTextChange($event)"
           (keyup.enter)="addNewTreatment()">
     </material-input>
     <material-button

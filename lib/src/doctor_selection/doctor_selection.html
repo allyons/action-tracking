@@ -2,13 +2,15 @@
         flat
         name="Doctor selection"
         secondaryText="Please indicate your preferred physician."
-        showSaveCancel=false>
+        [showSaveCancel]="false"
+        (expandedChange)="handleExpandedChange($event)">
     <material-radio-group
         class="doctor-radio-group"
         [(ngModel)]="selectedDoctor">
         <material-radio
             *ngFor="let doctor of doctorList"
-            class="doctor-radio">
+            class="doctor-radio"
+            [value]="doctor">
             {{doctor}}
         </material-radio>
     </material-radio-group>
