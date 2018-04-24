@@ -1,52 +1,111 @@
 /// App-level configuration that maps each user action to its action data.
-class ActionTrackingAppConfiguration {
-  final elementConfigurations = <String, ElementConfiguration>{};
+class AppConfiguration {
+  final elements = <String, ElementConfiguration>{};
+  final double workflowOrderingPenalty;
+  final Map<String, Set<String>> validElementOrderings;
 
-  ActionTrackingAppConfiguration(List<ElementConfiguration> data) {
-    data.forEach((e) => elementConfigurations[e.elementId] = e);
+  AppConfiguration(List<ElementConfiguration> data,
+      {this.workflowOrderingPenalty = 0.0,
+      this.validElementOrderings: const{}}) {
+    data.forEach((e) => elements[e.elementId] = e);
   }
 }
 
 /// Scoring configuration for a single Material component element.
+///
+/// For components (such as expansion panels) that contain additional sub-
+/// elements, those elements' actions can also be grouped into this
+/// configuration.
 class ElementConfiguration {
   final String elementId;
   final double weight;
-  final List<ActionConfiguration> actions;
+  final double workflowOrderingPenalty;
+  final double maxIntrinsicValueScore;
+  final double maxActionDurationScore;
+  final double maxWorkflowOrderingScore;
+  final Map<String, Set<String>> validActionOrderings;
 
-  ElementConfiguration(this.elementId, this.weight, this.actions);
+  final actions = <String, ActionConfiguration>{};
+
+
+  ElementConfiguration(
+      this.elementId,
+      List<ActionConfiguration> data,
+      {this.weight = 1.0,
+      this.workflowOrderingPenalty = 0.0,
+      this.maxIntrinsicValueScore = 0.0,
+      this.maxActionDurationScore = 0.0,
+      this.maxWorkflowOrderingScore = 0.0,
+      this.validActionOrderings = const{}}) {
+    data.forEach((e) => actions[e.actionId] = e);
+    }
 }
 
 /// Scoring configuration for a single user action.
-abstract class ActionConfiguration {
-  final double score;
-  final double scoreSubsequenceMultiplier;
-  final double penalty;
-  final double penaltySubsequenceMultiplier;
-  final double maxScore;
-  final double minScore;
+///
+/// Examples of user actions include adding or removing text from a Material
+/// Input, or expanding or collapsing a Material Expansion Panel.
+class ActionConfiguration {
+  final String actionId;
+  final double intrinsicValue;
+  final double valueSubsequenceMultiplier;
+  final double maxValueScore;
+  final double lowerTimeBound;
+  final double upperTimeBound;
+  final double timeScoreRate; // Penalty per second beyond the bounds.
+  final double maxTimeScore;
+  final ActionType actionType;
   final ActionScoringType scoringType;
 
-  ActionConfiguration(this.score, this.scoreSubsequenceMultiplier, this.penalty,
-      this.penaltySubsequenceMultiplier, this.maxScore, this.minScore,
-      this.scoringType);
+  ActionConfiguration(
+    this.actionId,
+    {this.intrinsicValue = 0.0,
+    this.valueSubsequenceMultiplier = 0.0,
+    this.maxValueScore = 0.0,
+    this.lowerTimeBound = 0.0,
+    this.upperTimeBound = 0.0,
+    this.timeScoreRate = 0.0,
+    this.maxTimeScore = 0.0,
+    this.actionType = ActionType.unknown,
+    this.scoringType = ActionScoringType.unknown});
 }
 
-/// Scoring configuration for an action expanding a Material Expansion Panel.
-class ExpansionPanelExpandActionConfiguration extends ActionConfiguration {
-  ExpansionPanelExpandActionConfiguration(double score, double
-    scoreSubsequenceMultiplier, double penalty, double
-    penaltySubsequenceMultiplier, double maxScore, double minScore,
-      ActionScoringType scoringType) : super(score, scoreSubsequenceMultiplier,
-      penalty, penaltySubsequenceMultiplier, maxScore, minScore, scoringType);
+/// Enum list of supported material components.
+enum ComponentType {
+  expansionPanel,
+  input,
+  checkbox,
+  radio,
+  button,
+  unknown
 }
 
-/// Scoring configuration for an action collapsing a Material Expansion Panel.
-class ExpansionPanelCollapseActionConfiguration extends ActionConfiguration {
-  ExpansionPanelCollapseActionConfiguration(double score, double
-  scoreSubsequenceMultiplier, double penalty, double
-  penaltySubsequenceMultiplier, double maxScore, double minScore,
-      ActionScoringType scoringType) : super(score, scoreSubsequenceMultiplier,
-      penalty, penaltySubsequenceMultiplier, maxScore, minScore, scoringType);
+/// Enum list of supported action types.
+enum ActionType {
+
+  /// Material Expansion Panel Action - expand panel.
+  expansionPanelExpand,
+
+  /// Material Expansion Panel Action - collapse panel.
+  expansionPanelCollapse,
+
+  /// Material Input Action - add or remove text.
+  inputTextChange,
+
+  /// Material Checkbox Action - check.
+  checkboxCheck,
+
+  /// Material Checkbox Action - uncheck.
+  checkboxUncheck,
+
+  /// Material Radio Action - radio selection.
+  radioSelection,
+
+  /// Material Button - click.
+  buttonClick,
+
+  /// Generic action type.
+  unknown,
 }
 
 /// Enum list of supported positivity scoring types.
@@ -55,7 +114,9 @@ enum ActionScoringType {
   /// Apply the score each time the action occurs.
   static,
 
-  /// Apply the score the first time the action occurs, then apply the penalty
-  /// upon subsequent occurrences.
-  single,
+  /// Apply the score upon the second and subsequent times the action occurs.
+  second,
+
+  /// Generic action scoring type.
+  unknown,
 }

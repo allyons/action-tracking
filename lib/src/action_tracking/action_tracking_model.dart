@@ -23,36 +23,41 @@ class ActionTrackingModel {
     // Log the session.
   }
 
-  void markExpansionPanelExpansion(bool isExpanded, String elementId) {
+  void markExpansionPanelExpansion(bool isExpanded, String elementId,
+      String actionId) {
     final currentTime = stopwatch.elapsedMilliseconds;
-    sessionData.add(new ExpansionPanelData(isExpanded, elementId,
+    sessionData.add(new ExpansionPanelData(isExpanded, elementId, actionId,
         currentTime, lastTime));
     lastTime = currentTime;
   }
 
-  void markInputTextChange(int inputTextLength, String elementId) {
+  void markInputTextChange(int inputTextLength, String elementId,
+      String actionId) {
     final currentTime = stopwatch.elapsedMilliseconds;
-    sessionData.add(new InputData(inputTextLength, elementId,
+    sessionData.add(new InputData(inputTextLength, elementId, actionId,
         currentTime, lastTime));
     lastTime = currentTime;
   }
 
-  void markCheckboxChecked(bool isChecked, String elementId) {
+  void markCheckboxChecked(bool isChecked, String elementId,
+      String actionId) {
     final currentTime = stopwatch.elapsedMilliseconds;
-    sessionData.add(new CheckboxData(isChecked, elementId,
+    sessionData.add(new CheckboxData(isChecked, elementId, actionId,
         currentTime, lastTime));
     lastTime = currentTime;
   }
 
-  void markRadioSelectionChange(String selection, String elementId) {
+  void markRadioSelectionChange(String selection, String elementId,
+      String actionId) {
     final currentTime = stopwatch.elapsedMilliseconds;
-    sessionData.add(new RadioData(selection, elementId, currentTime, lastTime));
+    sessionData.add(new RadioData(selection, elementId, actionId, currentTime,
+        lastTime));
     lastTime = currentTime;
   }
 
-  void markButtonClicked(String elementId) {
+  void markButtonClicked(String elementId, String actionId) {
     final currentTime = stopwatch.elapsedMilliseconds;
-    sessionData.add(new ButtonData(elementId, currentTime, lastTime));
+    sessionData.add(new ButtonData(elementId, actionId, currentTime, lastTime));
     lastTime = currentTime;
   }
 }

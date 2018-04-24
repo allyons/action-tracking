@@ -1,4 +1,5 @@
 import 'package:action_tracking/src/action_tracking/action_tracking_model.dart';
+import 'package:action_tracking/src/action_tracking/doctor_app_configuration.dart';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -13,37 +14,34 @@ import 'package:angular_components/angular_components.dart';
 )
 class CurrentTreatmentsComponent {
   final ActionTrackingModel actionTrackingModel;
-  final String materialExpansionPanelId =
-      'CurrentTreatmentsComponent_MaterialExpansionPanel';
-  final String treatmentInputId =
-      'CurrentTreatmentsComponent_MaterialInput_Treatment';
-  final String addTreatmentButtonId =
-      'CurrentTreatmentsComponent_MaterialButton_AddTreatment';
-  final String removeTreatmentButtonId =
-      'CurrentTreatmentsComponent_MaterialButton_RemoveTreatment';
 
   List<String> items = [];
   String newTreatment = '';
 
   CurrentTreatmentsComponent(this.actionTrackingModel);
 
+  String get elementId => currentTreatmentsExpansionPanelId;
+
   void addNewTreatment() {
-    actionTrackingModel.markButtonClicked(addTreatmentButtonId);
+    actionTrackingModel.markButtonClicked(elementId,
+        currentTreatmentsAddActionId);
     items.add(newTreatment);
     newTreatment = '';
   }
 
   void handleExpandedChange(bool isExpanded) {
-    actionTrackingModel.markExpansionPanelExpansion(isExpanded,
-        materialExpansionPanelId);
+    actionTrackingModel.markExpansionPanelExpansion(isExpanded, elementId,
+        isExpanded ?
+        expansionPanelExpandActionId : expansionPanelCollapseActionId);
   }
 
   void treatmentTextChange(String text) {
-    actionTrackingModel.markInputTextChange(text.length, treatmentInputId);
+    actionTrackingModel.markInputTextChange(text.length, elementId,
+        inputTextChangeActionId);
   }
 
   String remove(int index) {
-    actionTrackingModel.markButtonClicked(removeTreatmentButtonId);
+    actionTrackingModel.markButtonClicked(elementId, inputTextChangeActionId);
     return items.removeAt(index);
   }
 }

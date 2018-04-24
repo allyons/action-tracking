@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:action_tracking/src/action_tracking/action_tracking_model.dart';
+import 'package:action_tracking/src/action_tracking/doctor_app_configuration.dart';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 import 'doctor_selection_service.dart';
@@ -18,10 +19,7 @@ import 'doctor_selection_service.dart';
 class DoctorSelectionComponent implements OnInit {
   final DoctorSelectionService doctorSelectionService;
   final ActionTrackingModel actionTrackingModel;
-  final String materialExpansionPanelId =
-      'DoctorSelectionComponent_MaterialExpansionPanel';
-  final String doctorRadioId =
-      'DoctorSelectionComponent_MaterialRadio_Doctor';
+
   List<String> doctorList;
   String _selectedDoctor;
 
@@ -29,11 +27,14 @@ class DoctorSelectionComponent implements OnInit {
       this.doctorSelectionService, this.actionTrackingModel);
 
   set selectedDoctor(String name) {
-    actionTrackingModel.markRadioSelectionChange(name, doctorRadioId);
+    actionTrackingModel.markRadioSelectionChange(name,
+        doctorSelectionExpansionPanelId, doctorSelectionRadioSelectionActionId);
     _selectedDoctor = name;
   }
 
   String get selectedDoctor => _selectedDoctor;
+
+  String get elementId => doctorSelectionExpansionPanelId;
 
   @override
   Future<Null> ngOnInit() async {
@@ -41,7 +42,8 @@ class DoctorSelectionComponent implements OnInit {
   }
 
   void handleExpandedChange(bool isExpanded) {
-    actionTrackingModel.markExpansionPanelExpansion(isExpanded,
-        materialExpansionPanelId);
+    actionTrackingModel.markExpansionPanelExpansion(isExpanded, elementId,
+        isExpanded ?
+        expansionPanelExpandActionId : expansionPanelCollapseActionId);
   }
 }

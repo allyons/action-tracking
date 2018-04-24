@@ -1,4 +1,5 @@
 import 'package:action_tracking/src/action_tracking/action_tracking_model.dart';
+import 'package:action_tracking/src/action_tracking/doctor_app_configuration.dart';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
@@ -13,20 +14,6 @@ import 'package:angular_components/angular_components.dart';
 )
 class BasicInformationComponent  {
   final ActionTrackingModel actionTrackingModel;
-  final String materialExpansionPanelId =
-      'BasicInformationComponent_MaterialExpansionPanel';
-  final String lastNameInputId =
-      'BasicInformationComponent_MaterialInput_LastName';
-  final String firstNameInputId =
-      'BasicInformationComponent_MaterialInput_FirstName';
-  final String petNameInputId =
-      'BasicInformationComponent_MaterialInput_PetName';
-  final String petBreedInputId =
-      'BasicInformationComponent_MaterialInput_PetBreed';
-  final String phoneNumberInputId =
-      'BasicInformationComponent_MaterialInput_PhoneNumber';
-  final String emailAddressInputId =
-      'BasicInformationComponent_MaterialInput_EmailAddress';
 
   String clientFirstName;
   String clientLastName;
@@ -37,32 +24,16 @@ class BasicInformationComponent  {
 
   BasicInformationComponent(this.actionTrackingModel);
 
+  String get elementId => basicInformationExpansionPanelId;
+
   void handleExpandedChange(bool isExpanded) {
-    actionTrackingModel.markExpansionPanelExpansion(isExpanded,
-        materialExpansionPanelId);
+    actionTrackingModel.markExpansionPanelExpansion(isExpanded, elementId,
+        isExpanded ?
+        expansionPanelExpandActionId : expansionPanelCollapseActionId);
   }
 
-  void lastNameTextChange(String text) {
-    actionTrackingModel.markInputTextChange(text.length, lastNameInputId);
-  }
-
-  void firstNameTextChange(String text) {
-    actionTrackingModel.markInputTextChange(text.length, firstNameInputId);
-  }
-
-  void petNameTextChange(String text) {
-    actionTrackingModel.markInputTextChange(text.length, petNameInputId);
-  }
-
-  void petBreedTextChange(String text) {
-    actionTrackingModel.markInputTextChange(text.length, petBreedInputId);
-  }
-
-  void phoneNumberTextChange(String text) {
-    actionTrackingModel.markInputTextChange(text.length, phoneNumberInputId);
-  }
-
-  void emailAddressTextChange(String text) {
-    actionTrackingModel.markInputTextChange(text.length, emailAddressInputId);
+  void inputTextChange(String text) {
+    actionTrackingModel.markInputTextChange(text.length, elementId,
+        inputTextChangeActionId);
   }
 }

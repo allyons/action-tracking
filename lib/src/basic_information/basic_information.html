@@ -11,7 +11,7 @@
                 class="client-last-name basic-info-input"
                 label="Last name"
                 [(ngModel)]="clientLastName"
-                (inputKeyPress)="lastNameTextChange($event)">
+                (inputKeyPress)="inputTextChange($event)">
         </material-input>
         <material-input
                 autoFocus
@@ -19,7 +19,7 @@
                 class="client-first-name basic-info-input"
                 label="First name"
                 [(ngModel)]="clientFirstName"
-                (inputKeyPress)="firstNameTextChange($event)">
+                (inputKeyPress)="inputTextChange($event)">
         </material-input>
         <material-input
                 autoFocus
@@ -27,7 +27,7 @@
                 class="pet-name basic-info-input"
                 label="Pet's name"
                 [(ngModel)]="petName"
-                (inputKeyPress)="petNameTextChange($event)">
+                (inputKeyPress)="inputTextChange($event)">
         </material-input>
         <material-input
                 autoFocus
@@ -35,7 +35,7 @@
                 class="pet-breed basic-info-input"
                 label="Pet's breed"
                 [(ngModel)]="petBreed"
-                (inputKeyPress)="petBreedTextChange($event)">
+                (inputKeyPress)="inputTextChange($event)">
         </material-input>
     </div>
     <div class="row">
@@ -45,7 +45,7 @@
                 class="email-address basic-info-input"
                 label="Email address"
                 [(ngModel)]="emailAddress"
-                (inputKeyPress)="emailAddressTextChange($event)">
+                (inputKeyPress)="inputTextChange($event)">
         </material-input>
         <material-input
                 autoFocus
@@ -53,7 +53,7 @@
                 class="phone-number basic-info-input"
                 label="Phone number"
                 [(ngModel)]="phoneNumber"
-                (inputKeyPress)="phoneNumberTextChange($event)">
+                (inputKeyPress)="inputTextChange($event)">
         </material-input>
     </div>
 </material-expansionpanel>

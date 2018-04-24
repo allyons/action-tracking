@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:action_tracking/src/action_tracking/action_tracking_model.dart';
+import 'package:action_tracking/src/action_tracking/doctor_app_configuration.dart';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 import 'preexisting_conditions_service.dart';
@@ -17,21 +18,16 @@ import 'preexisting_conditions_service.dart';
 )
 class PreexistingConditionsComponent implements OnInit {
   final ActionTrackingModel actionTrackingModel;
-  final String materialExpansionPanelId =
-      'PreexistingConditionsComponent_MaterialExpansionPanel';
-  final String knownConditionCheckboxId =
-      'PreexistingConditionsComponent_MaterialCheckbox_KnownCondition';
-  final String otherConditionCheckboxId =
-      'PreexistingConditionsComponent_MaterialCheckbox_OtherCondition';
-  final String otherConditionInputId =
-      'PreexistingConditionsComponent_MaterialInput_OtherCondition';
   final PreexistingConditionsService preexistingConditionsService;
+
   Map<String, bool> conditions = {};
   bool otherChecked = false;
   String otherCondition = '';
 
   PreexistingConditionsComponent(this.preexistingConditionsService,
       this.actionTrackingModel);
+
+  String get elementId => preexistingConditionsExpansionPanelId;
 
   @override
   Future<Null> ngOnInit() async {
@@ -41,23 +37,25 @@ class PreexistingConditionsComponent implements OnInit {
   }
 
   void handleExpandedChange(bool isExpanded) {
-    actionTrackingModel.markExpansionPanelExpansion(isExpanded,
-        materialExpansionPanelId);
+    actionTrackingModel.markExpansionPanelExpansion(isExpanded, elementId,
+        isExpanded ?
+        expansionPanelExpandActionId : expansionPanelCollapseActionId);
   }
 
   void handleKnownConditionCheckedChange(bool isChecked, String condition) {
     conditions[condition] = isChecked;
-    actionTrackingModel.markExpansionPanelExpansion(isChecked,
-        knownConditionCheckboxId);
+    actionTrackingModel.markExpansionPanelExpansion(isChecked, elementId,
+      isChecked ? checkboxCheckActionId : checkboxUncheckActionId);
   }
 
   void handleOtherConditionCheckedChange(bool isChecked) {
     otherChecked = isChecked;
-    actionTrackingModel.markExpansionPanelExpansion(isChecked,
-        otherConditionCheckboxId);
+    actionTrackingModel.markExpansionPanelExpansion(isChecked, elementId,
+        isChecked ? checkboxCheckActionId : checkboxUncheckActionId);
   }
 
   void otherConditionTextChange(String text) {
-    actionTrackingModel.markInputTextChange(text.length, otherConditionInputId);
+    actionTrackingModel.markInputTextChange(text.length, elementId,
+        inputTextChangeActionId);
   }
 }
