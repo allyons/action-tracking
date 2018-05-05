@@ -1,0 +1,94 @@
+<div class="results">
+    <div class="section-title">Top Elements by Average Intrinsic Value Score</div>
+    <acx-scoreboard scrollable class="scoreboard" [type]="radioType">
+        <acx-scorecard
+                *ngIf="elementsSortedByIntrinsicValue.length > 0"
+                class="scorecard"
+                label="{{elementsSortedByIntrinsicValue[0]}}"
+                value="{{getValueForElement(elementsSortedByIntrinsicValue[0])}}"
+                description="{{getDescriptionForElement(elementsSortedByIntrinsicValue[0])}}"
+                suggestionAfter="vs. avg. element score"
+                changeType="NEGATIVE">
+        </acx-scorecard>
+        <acx-scorecard
+                *ngIf="elementsSortedByIntrinsicValue.length > 1"
+                class="scorecard"
+                label="{{elementsSortedByIntrinsicValue[1]}}"
+                value="{{getValueForElement(elementsSortedByIntrinsicValue[1])}}"
+                description="{{getDescriptionForElement(elementsSortedByIntrinsicValue[1])}}"
+                suggestionAfter="vs. avg. element score"
+                changeType="NEGATIVE">
+        </acx-scorecard>
+        <acx-scorecard
+                *ngIf="elementsSortedByIntrinsicValue.length > 2"
+                class="scorecard"
+                label="{{elementsSortedByIntrinsicValue[2]}}"
+                value="{{getValueForElement(elementsSortedByIntrinsicValue[2])}}"
+                description="{{getDescriptionForElement(elementsSortedByIntrinsicValue[2])}}"
+                suggestionAfter="vs. avg. element score"
+                changeType="NEGATIVE">
+        </acx-scorecard>
+    </acx-scoreboard>
+</div>
+<div class="results">
+    <div class="section-title">Top Elements by Average Duration Score</div>
+    <acx-scoreboard scrollable class="scoreboard" [type]="radioType">
+        <acx-scorecard
+                *ngIf="elementsSortedByDurationScore.length > 0"
+                class="scorecard"
+                label="{{elementsSortedByDurationScore[0]}}"
+                value="{{getDurationValueForElement(elementsSortedByDurationScore[0])}}"
+                description="{{getDurationDescriptionForElement(elementsSortedByDurationScore[0])}}"
+                suggestionAfter="avg. % time spent"
+                changeType="NEGATIVE">
+        </acx-scorecard>
+        <acx-scorecard
+                *ngIf="elementsSortedByDurationScore.length > 1"
+                class="scorecard"
+                label="{{elementsSortedByDurationScore[1]}}"
+                value="{{getDurationValueForElement(elementsSortedByDurationScore[1])}}"
+                description="{{getDurationDescriptionForElement(elementsSortedByDurationScore[1])}}"
+                suggestionAfter="avg. % time spent"
+                changeType="NEGATIVE">
+        </acx-scorecard>
+        <acx-scorecard
+                *ngIf="elementsSortedByDurationScore.length > 2"
+                class="scorecard"
+                label="{{elementsSortedByDurationScore[2]}}"
+                value="{{getDurationValueForElement(elementsSortedByDurationScore[2])}}"
+                description="{{getDurationDescriptionForElement(elementsSortedByDurationScore[2])}}"
+                suggestionAfter="avg. % time spent"
+                changeType="NEGATIVE">
+        </acx-scorecard>
+    </acx-scoreboard>
+</div>
+
+<div class="results">
+    <div class="section-title">Top Element-level Workflow Ordering Deviations</div>
+    <acx-scoreboard scrollable class="scoreboard" [type]="radioType">
+        <acx-scorecard
+                *ngIf="rankedElementOrderingDeviations.length > 0"
+                class="scorecard"
+                label="{{getLabelForDeviation(rankedElementOrderingDeviations[0])}}"
+                value="{{getValueForDeviation(rankedElementOrderingDeviations[0])}}"
+                description="{{getDescriptionForDeviation(rankedElementOrderingDeviations[0])}}"
+                changeType="NEGATIVE">
+        </acx-scorecard>
+        <acx-scorecard
+                *ngIf="rankedElementOrderingDeviations.length > 1"
+                class="scorecard"
+                label="{{getLabelForDeviation(rankedElementOrderingDeviations[1])}}"
+                value="{{getValueForDeviation(rankedElementOrderingDeviations[1])}}"
+                description="{{getDescriptionForDeviation(rankedElementOrderingDeviations[1])}}"
+                changeType="NEGATIVE">
+        </acx-scorecard>
+        <acx-scorecard
+                *ngIf="rankedElementOrderingDeviations.length > 2"
+                class="scorecard"
+                label="From {{getLabelForDeviation(rankedElementOrderingDeviations[2])}}"
+                value="{{getValueForDeviation(rankedElementOrderingDeviations[2])}}"
+                description="To {{getDescriptionForDeviation(rankedElementOrderingDeviations[2])}}"
+                changeType="NEGATIVE">
+        </acx-scorecard>
+    </acx-scoreboard>
+</div>

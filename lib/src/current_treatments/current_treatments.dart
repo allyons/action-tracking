@@ -41,7 +41,8 @@ class CurrentTreatmentsComponent {
   }
 
   String remove(int index) {
-    actionTrackingModel.markButtonClicked(elementId, inputTextChangeActionId);
+    actionTrackingModel.markButtonClicked(elementId,
+        currentTreatmentsRemoveActionId);
     return items.removeAt(index);
   }
 }
